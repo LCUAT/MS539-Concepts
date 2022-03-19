@@ -3,8 +3,8 @@
  * 3/6/22
  * Description:
  *      Assignment 1 - This program is designed to demonstrate basic error handling.
- *      Time Predicted: 1hr
- *      Time Elapsed: 20mins
+ *      Time Predicted: 20mins
+ *      Time Elapsed: 40mins
  */
 
 
