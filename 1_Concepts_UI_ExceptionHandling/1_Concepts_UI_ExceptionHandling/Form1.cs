@@ -1,10 +1,10 @@
 /*
  * Luke Coddington
- * 3/6/22
+ * 3/20/22
  * Description:
- *      Assignment 1 - This program is designed to demonstrate basic error handling.
+ *      Assignment 2 - 
  *      Time Predicted: 20mins
- *      Time Elapsed: 40mins
+ *      Time Elapsed: 20mins
  */
 
 
@@ -15,6 +15,54 @@ namespace _1_Concepts_UI_ExceptionHandling
         public Dungeon_Crawler()
         {
             InitializeComponent();
+        }
+
+        public void GoOutDoor()
+        {
+            Narator.Text = "You successfully get out the door! That's as far as this program goes...";
+        }
+
+        // simulate a d20 role
+        public int RoleDice()
+        {
+            Random rnd = new Random();
+            int num = rnd.Next(1,20);
+            return num;
+        }
+
+        public void ResetActions(string[] actions)
+        {
+            UserActions.Items.Clear();
+            UserActions.Items.AddRange(actions);
+        }
+
+        public void GrabTorch()
+        {
+            int userRole = RoleDice();
+            int otherRole = RoleDice();
+            while (userRole == otherRole)
+            {
+                userRole = RoleDice();
+            }
+
+            Narator.Text = "User Role: " + userRole;
+            Narator.AppendText(Environment.NewLine);
+            Narator.AppendText("Other Role: " + otherRole);
+            Narator.AppendText(Environment.NewLine);
+
+            if (userRole > otherRole)
+            {
+                Narator.AppendText("You grab the torch and successfully get out the door! That's as far as this program goes...");
+            }
+            else
+            {
+                Narator.AppendText("The torch is mounted on the wall, you can't pull it off. You go out the door and that's as far as this program goes...");
+            }
+        }
+
+        public void SitAndWait()
+        {
+            Narator.Text = "You sit and wait... Wow this is boring";
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -33,35 +81,33 @@ namespace _1_Concepts_UI_ExceptionHandling
                 //try to convert the item to a string
                 var SelectionText = Convert.ToString(selection);
                 
-                string resultString = "";
-
-                //display the correct text to the user
-                if (SelectionText == "Yes")
+                if (SelectionText == "Go out the door")
                 {
-                    resultString = "Thank you very much!";
+                    GoOutDoor();
                 }
-                else if(SelectionText == "")
+                else if(SelectionText == "Grab the torch and go out the door")
                 {
-                    // failed to convert, user did not select anything
-                    resultString = "Please Select an option!";
+                    GrabTorch();
+                }
+                else if(SelectionText == "Stay where you are and wait")
+                {
+                    SitAndWait();
+                }
+                else if(SelectionText == "Exit")
+                {
+                    this.Close();
                 }
                 else
                 {
-                    resultString = "How rude.";
+                    Narator.Text = "Invalid Option!!";
                 }
-                MessageBox.Show(resultString);
+                string[] exit = {"Exit"};
+                ResetActions(exit);
             }
             catch(Exception ex)
             {
                 MessageBox.Show("Unable to parse result!");
             }
-        }
-
-        //text box text was changed
-        private void Narator_TextChanged(object sender, EventArgs e)
-        {
-            //text was changed, update the text
-            Narator.Text = "You can change the text! \n Do you like this Program? Use the User Actions dropdown and then select submit";
         }
     }
 }

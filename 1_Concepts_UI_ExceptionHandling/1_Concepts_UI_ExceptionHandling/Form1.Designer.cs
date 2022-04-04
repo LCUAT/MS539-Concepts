@@ -59,17 +59,21 @@
             this.Narator.Location = new System.Drawing.Point(12, 562);
             this.Narator.Multiline = true;
             this.Narator.Name = "Narator";
+            this.Narator.ReadOnly = true;
             this.Narator.Size = new System.Drawing.Size(2259, 420);
             this.Narator.TabIndex = 2;
-            this.Narator.Text = "Can you edit this box? Give it a try!";
-            this.Narator.TextChanged += new System.EventHandler(this.Narator_TextChanged);
+            this.Narator.Text = "You wake up in a dark dungeon, there is a torch on the wall and a door. What do y" +
+    "ou do?";
             // 
             // UserActions
             // 
+            this.UserActions.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.UserActions.FormattingEnabled = true;
             this.UserActions.Items.AddRange(new object[] {
-            "Yes",
-            "No"});
+            "Go out the door",
+            "Grab the torch and go out the door",
+            "Stay where you are and wait",
+            "Exit"});
             this.UserActions.Location = new System.Drawing.Point(244, 1046);
             this.UserActions.Name = "UserActions";
             this.UserActions.Size = new System.Drawing.Size(302, 49);
