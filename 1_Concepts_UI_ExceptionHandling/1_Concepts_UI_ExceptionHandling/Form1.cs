@@ -1,8 +1,8 @@
 /*
  * Luke Coddington
- * 4/10/22
+ * 4/16/22
  * Description:
- *      Assignment 4 - Inheritance
+ *      Assignment 5 - UI
  *      Time Predicted: 20mins
  *      Time Elapsed: 20mins
  */
@@ -213,6 +213,33 @@ namespace _1_Concepts_UI_ExceptionHandling
             {
                 MessageBox.Show("Unable to parse result: "+ex);
             }
+        }
+
+
+        //On hover display the correct tool tip
+        private void SubmitBtn_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.SetToolTip(SubmitBtn, "User the User Actions Menu and then click this button");
+        }
+
+        private void label2_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.SetToolTip(label2, "Select character action and select submit");
+        }
+
+        private void UserActions_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.SetToolTip(UserActions, "Select character action and select submit");
+        }
+
+        private void Narator_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.SetToolTip(Narator, "Automated Dungeon Master");
+        }
+
+        private void ImageBox_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.SetToolTip(ImageBox, "Visual Rendering of Senario");
         }
     }
 }

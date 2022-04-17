@@ -28,12 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Dungeon_Crawler));
             this.SubmitBtn = new System.Windows.Forms.Button();
             this.ImageBox = new System.Windows.Forms.PictureBox();
             this.Narator = new System.Windows.Forms.TextBox();
             this.UserActions = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.ImageBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -46,6 +48,7 @@
             this.SubmitBtn.Text = "Submit";
             this.SubmitBtn.UseVisualStyleBackColor = true;
             this.SubmitBtn.Click += new System.EventHandler(this.SubmitBtn_Click);
+            this.SubmitBtn.MouseHover += new System.EventHandler(this.SubmitBtn_MouseHover);
             // 
             // ImageBox
             // 
@@ -56,6 +59,7 @@
             this.ImageBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.ImageBox.TabIndex = 1;
             this.ImageBox.TabStop = false;
+            this.ImageBox.MouseHover += new System.EventHandler(this.ImageBox_MouseHover);
             // 
             // Narator
             // 
@@ -67,6 +71,7 @@
             this.Narator.TabIndex = 2;
             this.Narator.Text = "You wake up in a dark dungeon, there is a torch on the wall and a door. What do y" +
     "ou do?";
+            this.Narator.MouseHover += new System.EventHandler(this.Narator_MouseHover);
             // 
             // UserActions
             // 
@@ -81,6 +86,7 @@
             this.UserActions.Name = "UserActions";
             this.UserActions.Size = new System.Drawing.Size(302, 49);
             this.UserActions.TabIndex = 3;
+            this.UserActions.MouseHover += new System.EventHandler(this.UserActions_MouseHover);
             // 
             // label2
             // 
@@ -90,6 +96,7 @@
             this.label2.Size = new System.Drawing.Size(191, 41);
             this.label2.TabIndex = 5;
             this.label2.Text = "User Actions:";
+            this.label2.MouseHover += new System.EventHandler(this.label2_MouseHover);
             // 
             // Dungeon_Crawler
             // 
@@ -117,5 +124,6 @@
         private TextBox Narator;
         private ComboBox UserActions;
         private Label label2;
+        private ToolTip toolTip1;
     }
 }
