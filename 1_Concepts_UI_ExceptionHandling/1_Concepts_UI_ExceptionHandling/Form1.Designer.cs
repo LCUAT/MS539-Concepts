@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Dungeon_Crawler));
             this.SubmitBtn = new System.Windows.Forms.Button();
             this.ImageBox = new System.Windows.Forms.PictureBox();
             this.Narator = new System.Windows.Forms.TextBox();
@@ -48,9 +49,11 @@
             // 
             // ImageBox
             // 
+            this.ImageBox.Image = ((System.Drawing.Image)(resources.GetObject("ImageBox.Image")));
             this.ImageBox.Location = new System.Drawing.Point(12, 12);
             this.ImageBox.Name = "ImageBox";
             this.ImageBox.Size = new System.Drawing.Size(2259, 544);
+            this.ImageBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.ImageBox.TabIndex = 1;
             this.ImageBox.TabStop = false;
             // 
