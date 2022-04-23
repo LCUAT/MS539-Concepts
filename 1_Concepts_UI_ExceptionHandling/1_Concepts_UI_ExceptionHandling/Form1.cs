@@ -1,10 +1,10 @@
 /*
  * Luke Coddington
- * 4/16/22
+ * 4/23/22
  * Description:
- *      Assignment 5 - UI
- *      Time Predicted: 20mins
- *      Time Elapsed: 20mins
+ *      Final
+ *      Time Predicted: 30mins
+ *      Time Elapsed: 30mins
  */
 
 
@@ -24,7 +24,7 @@ namespace _1_Concepts_UI_ExceptionHandling
             {
                 try
                 {
-                    string[] images = { "Dungeon_1.jpg", "Dungeon_2.jpg", "Dungeon_3.jpg", "Dungeon_4.jpg", "Dungeon_5.jpg" };
+                    string[] images = { "Dungeon_1.jpg", "Dungeon_2.jpg", "Dungeon_3.jpg", "Dungeon_4.jpg", "Loss.jpg", "Dungeon_6.jpg", "Dungeon_7.jpg", "Dungeon_8.jpg", "Dungeon_9.jpg", "Dungeon_10.jpg", "End.jpg" };
                     string imagePath = "./Images/";
                     imagePath = imagePath + images[picture - 1];
                     mainForm.ImageBox.Image = Image.FromFile(imagePath);
@@ -137,8 +137,86 @@ namespace _1_Concepts_UI_ExceptionHandling
         {
             public void Continue()
             {
-                mainForm.Narator.Text = "You continue down the hallway and that's as far as this program goes...";
-                this.SetImage(5);
+                mainForm.Narator.Text = "You continue down the hallway, there are three other cells with prisoners in them, do you free the prisoners or keep going?";
+                string[] room4_options = { "Continue down the hallway", "Release the Prisonsers" };
+                ResetActions(room4_options);
+            }
+
+            public void ReleasePrisoners()
+            {
+                mainForm.Narator.Text = "You release the prisoners! You now have a squad to take on the dungeon! It's good to have friends. At the end you come to a large ornate door, do you go through?";
+                this.SetImage(6);
+                string[] room4_options = { "Go through the fancy door", "Open the smaller wooden door off to the side" };
+                ResetActions(room4_options);
+            }
+
+            public void ContinueHallway()
+            {
+                mainForm.Narator.Text = "You continue down the hallway. All alone. A lone lonely loner. At the end you come to a large ornate door, do you go through?";
+                this.SetImage(7);
+                string[] room4_options = { "Go through the fancy door", "Open the smaller wooden door off to the side" };
+                ResetActions(room4_options);
+            }
+        }
+
+        class Room4 : Dungeon
+        {
+            public void FancyDoor()
+            {
+                mainForm.Narator.Text = "You open the fancy door and interupt a surprise goblin dungeon instpection team! They present you with 10lbs of paperwork and NDAs about your esacpe. Do you sign the paperwork or kill everone?";
+                string[] room4_options_1 = { "Sign Paperwork", "Kill Everyone" };
+                ResetActions(room4_options_1);
+                this.SetImage(9);
+            }
+
+            public void SideDoor()
+            {
+                mainForm.Narator.Text = "You discover a midevil janitors closet. You suit up and armed with a mop you go through the fancy door. You open the fancy door and interupt a surprise goblin dungeon instpection team! They tell to continue on, do you kill everyone or exit the room?";
+                this.SetImage(9);
+                string[] room4_options_1 = { "Exit Room", "Kill Everyone" };
+                ResetActions(room4_options_1);
+            }
+
+            public void KillEveryone()
+            {
+                int userRole = RoleDice();
+                int otherRole = RoleDice();
+                while (userRole == otherRole)
+                {
+                    userRole = RoleDice();
+                }
+                this.mainForm.Narator.Text = "User Role: " + userRole;
+                this.mainForm.Narator.AppendText(Environment.NewLine);
+                this.mainForm.Narator.AppendText("Other Role: " + otherRole);
+                this.mainForm.Narator.AppendText(Environment.NewLine);
+
+                if (userRole > otherRole)
+                {
+                    this.mainForm.Narator.Text = "You destroy the goblins and exit the dungeon, the world awaits";
+                }
+                else
+                {
+                    this.mainForm.Narator.Text = "You barely defeat the goblins, badly wounded you exit the dungeon, the world awaits";
+                }
+                this.SetImage(11);
+                string[] end = { "Exit" };
+                ResetActions(end);
+            }
+
+            public void SignPaperwork()
+            {
+                mainForm.Narator.Text = "You sign the paperwork and walk free! The world awaits";
+                this.SetImage(11);
+                string[] end = { "Exit" };
+                ResetActions(end);
+            }
+
+            public void ExitRoom()
+            {
+                mainForm.Narator.Text = "You exit the dungeon, the world awaits";
+                this.SetImage(11);
+                string[] end = { "Exit" };
+                ResetActions(end);
             }
         }
 
@@ -164,6 +242,7 @@ namespace _1_Concepts_UI_ExceptionHandling
                 Room1 room1 = new Room1();
                 Room2 room2 = new Room2(); 
                 Room3 room3 = new Room3();
+                Room4 room4 = new Room4();
 
                 //try to convert the item to a string
                 var SelectionText = Convert.ToString(selection);
@@ -203,6 +282,34 @@ namespace _1_Concepts_UI_ExceptionHandling
                 else if(SelectionText == "Continue")
                 {
                     room3.Continue();
+                }
+                else if (SelectionText == "Release the Prisonsers")
+                {
+                    room3.ReleasePrisoners();
+                }
+                else if (SelectionText == "Continue down the hallway")
+                {
+                    room3.ContinueHallway();
+                }
+                else if (SelectionText == "Go through the fancy door")
+                {
+                    room4.FancyDoor();
+                }
+                else if (SelectionText == "Open the smaller wooden door off to the side")
+                {
+                    room4.SideDoor();
+                }
+                else if (SelectionText == "Kill Everyone")
+                {
+                    room4.KillEveryone();
+                }
+                else if (SelectionText == "Exit Room")
+                {
+                    room4.ExitRoom();
+                }
+                else if (SelectionText == "Sign Paperwork")
+                {
+                    room4.SignPaperwork();
                 }
                 else
                 {
